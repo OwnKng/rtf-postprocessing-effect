@@ -25,7 +25,7 @@ const PostProcessing = ({ children }: any) => {
 
   useEffect(
     () => void scene && composer.current.setSize(size.width, size.height),
-    [size]
+    [size, scene]
   )
 
   //_ data texture effect
