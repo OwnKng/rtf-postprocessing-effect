@@ -1,14 +1,15 @@
-export const fragment = `
-    uniform sampler2D uTexture; 
-    uniform sampler2D uDataTexture; 
+export const fragment = /* glsl */ `
+    varying vec3 vNormal;
+    varying vec3 vBary;
     varying vec2 vUv; 
 
     void main() {
-        vec2 distortion = texture2D(uDataTexture, vUv).rg; 
-        
-        float r = texture2D(uTexture, vUv + 0.02 * distortion).r;  
-        vec2 gb = texture2D(uTexture, vUv - 0.02 * distortion).gb;  
+        float width = 2.0;
+        vec3 d = fwidth(vBary);
+        vec3 s = smoothstep(d*(width + 0.5), d*(width - 0.5), vBary);
+        float line = max(s.x, max(s.y, s.z));
 
-        gl_FragColor = vec4(r, gb, 1.0); 
+        if(line < 0.9) discard;
+        gl_FragColor = vec4(vec3(line), 1.0);
     }
 `
