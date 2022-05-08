@@ -7,7 +7,7 @@ const App = () => (
   <div className='App'>
     <Canvas
       onCreated={(state) => state.gl.setClearColor("#08121C")}
-      camera={{ position: [0, 5, -10] }}
+      camera={{ position: [0, 0, 10] }}
     >
       <PostProcessing>
         <Sketch />

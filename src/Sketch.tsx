@@ -5,6 +5,7 @@ import { Mesh } from "three"
 import * as THREE from "three"
 import { vertex } from "./shaders/vertex"
 import { fragment } from "./shaders/fragment"
+import { Text } from "@react-three/drei"
 
 const Sketch = () => {
   const meshRef = useRef<Mesh>(null!)
@@ -41,7 +42,35 @@ const Sketch = () => {
     meshRef.current.rotation.z -= 0.005
   })
 
-  return <mesh ref={meshRef} geometry={geometry} material={material} />
+  return (
+    <>
+      <Text
+        color='white'
+        anchorX='middle'
+        anchorY='middle'
+        fontSize={1.5}
+        position={[-6, -4, 0]}
+        fillOpacity={0}
+        outlineOpacity={1}
+        strokeWidth={0.02}
+      >
+        POST
+      </Text>
+      <Text
+        color='white'
+        anchorX='middle'
+        anchorY='middle'
+        fontSize={2}
+        position={[-6, -6, 0]}
+        fillOpacity={0}
+        outlineOpacity={1}
+        strokeWidth={0.03}
+      >
+        PROCESSING
+      </Text>
+      <mesh ref={meshRef} geometry={geometry} material={material} />
+    </>
+  )
 }
 
 export default Sketch

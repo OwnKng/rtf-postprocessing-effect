@@ -9,7 +9,7 @@ export const fragment = /* glsl */ `
         vec3 s = smoothstep(d*(width + 0.5), d*(width - 0.5), vBary);
         float line = max(s.x, max(s.y, s.z));
 
-        if(line < 0.9) discard;
+        if(line < 0.7) discard;
         gl_FragColor = vec4(vec3(line), 1.0);
     }
 `
